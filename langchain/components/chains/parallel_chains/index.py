@@ -43,6 +43,3 @@ text="Learning the parameters of a prediction function and testing it on the sam
 
 result = main_chain.invoke({"text":text})
 print(result)
-
-
-
