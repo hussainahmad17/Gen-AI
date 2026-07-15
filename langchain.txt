@@ -86,3 +86,11 @@ For chat models, who, by default, generate Structured Output, we can use method 
 
 For chat models, who, by default, unable to generate Structured Output, we can use method called:
 -> Output Parser
+
+-----------------------Retrivers-------------------------------------------------------------
+
+Multi query retrivers:
+
+When user query is ambigous. Multi query retrivers are used there.
+They generate multiple queries from base(user) query, which are not ambigous.
+Then retrives the relevant docs against all thoes generated queries and then combined them to generate final answer.
