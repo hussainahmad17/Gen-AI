@@ -46,7 +46,12 @@ vector_store.add_documents(documents)
 
 # now we will make similarity search
 
-vector_store.similarity_search(
+results = vector_store.similarity_search(
     query="Who is the best bowler among them?",
     k=1
 )
+
+print("Most similar document:")
+for result in results:
+    print(result.page_content)
+    print("Metadata:", result.metadata)

@@ -150,3 +150,17 @@ venv/
 # Python cache
 __pycache__/
 *.py[cod]
+
+
+# Chroma database
+mychromaDB/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environment
+.venv/
+
+# Environment variables
+.env
