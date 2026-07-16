@@ -7,7 +7,7 @@ load_dotenv()  # Load environment variables from .env file
 # Create LangChain documents for IPL players
 
 doc1 = Document(
-    
+     page_content="Virat Kohli is one of the most successful and consistent batsmen in IPL history. Known for his aggressive batting style and exceptional run-scoring ability, he has been a key player for Royal Challengers Bangalore.",
     metadata={"team": "Royal Challengers Bangalore"}
 )
 

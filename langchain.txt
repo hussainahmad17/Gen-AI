@@ -46,7 +46,7 @@ Agents: Agents have llms+Tools+cuestomLogic+Memory
 
 Models:
 There are 2 types of models:
-->Lnaguage Models: Take text, generate text
+->Language Models: Take text, generate text
 ->Embedding modedsl: Take text, generate vectors
 
 In Language models, there are llms and Chat models. llms api request are stateless. Chat models are fine tuned for conversations.
