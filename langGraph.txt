@@ -1,0 +1,25 @@
+Agenti AI using LangGraph
+
+LangGraph is used to build stateful(nodes/data) llm workflows.
+In LangGraph, we can define the control flow of the Agents
+
+Core Concepts:
+
+
+1. Prompt Chaining:
+
+We have series of steps and output from one llm becomes the input for other.
+
+2. Parallelizm:
+
+Situation where we can execute the multiple llms workflows
+
+3. Routing: 
+
+The Situation where main llm(orchestration) has to decide to which llm, flow should go.
+
+4. Graphs, Nodes, and Edges
+
+Complete workflow is represented as a Graphs in LangGraph, where nodes are the python function performing specific tasks, and edges decide the flow of the execution like sequential, linear, Parallel.
+
+

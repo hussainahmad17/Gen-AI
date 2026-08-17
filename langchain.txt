@@ -1,5 +1,3 @@
-Agent AI Notes
-
 Gen AI using Langchain:
 
 1. Why we need Langchain:
