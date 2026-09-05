@@ -3,7 +3,7 @@ Agenti AI using LangGraph
 LangGraph is used to build stateful(nodes/data) llm workflows.
 In LangGraph, we can define the control flow of the Agents
 
-Core Concepts:
+------------------------------------Core Concepts------------------------------------------------
 
 
 1. Prompt Chaining:
@@ -17,3 +17,10 @@ The Situation where main llm(orchestration) has to decide to which llm, flow sho
 
 4. Graphs, Nodes, and Edges
 Complete workflow is represented as a Graphs in LangGraph, where nodes are the python function performing specific tasks, and edges decide the flow of the execution like sequential, linear, Parallel.
+
+------------------------------Advanced Concepts--------------------------------------------------
+
+checkpoints and MemorySaver
+
+They are used to restrore the agent state that let Agents to memorize the past conversations.
+We define the thread id to let agent identify the chat conversations, like which conversation is belong to which user.
