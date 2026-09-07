@@ -20,7 +20,11 @@ Complete workflow is represented as a Graphs in LangGraph, where nodes are the p
 
 ------------------------------Advanced Concepts--------------------------------------------------
 
-checkpoints and MemorySaver
+Checkpoints and MemorySaver:
 
-They are used to restrore the agent state that let Agents to memorize the past conversations.
+They are used to restroe the agent state that let Agents to memorize the past conversations.
 We define the thread id to let agent identify the chat conversations, like which conversation is belong to which user.
+
+Persistent:
+
+It refers to the ability to save and restore the state of workflow over the time.
