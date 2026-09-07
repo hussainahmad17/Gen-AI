@@ -28,3 +28,18 @@ We define the thread id to let agent identify the chat conversations, like which
 Persistent:
 
 It refers to the ability to save and restore the state of workflow over the time.
+For this, we can use the InMemorySaver class, by its object in compile time, we can implement the Persistent.
+
+Fault Tolerance:
+
+If the workflow crashes, it resume exactly from the point from where it crashed.
+we can resume our workflow from the last state by using the same thread_id, and by passing none as the input state, which will be filled in from the last state in memory. This is called Fault Tolerance, and allows us to resume our workflow from the last state in case of a failure or interruption.
+
+Human in the loop:
+
+Situation where workflow is interrupted and it waits for Human input 
+
+Time Travel:
+
+Going back to an earlier saved state of your agent and continuing from there.
+We can go back to the earlier state by passing Checkpoint ID
