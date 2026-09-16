@@ -24,8 +24,17 @@ class ChatState(TypedDict):
 
 def chat_node(state: ChatState) -> ChatState:
     messages = state["messages"]
-    response = llm.invoke(messages)
-    return {"messages": [response]}
+
+    # To enable token-by-token streaming in LangGraph with stream_mode="messages",
+    # we use llm.stream() instead of llm.invoke().
+    full_response = None
+    for chunk in llm.stream(messages):
+        if full_response is None:
+            full_response = chunk
+        else:
+            full_response += chunk
+
+    return {"messages": [full_response]}
 
 
 # define the graph
