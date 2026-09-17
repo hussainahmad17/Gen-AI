@@ -1,10 +1,10 @@
-Gen AI using Langchain:
+Gen AI using LangChain:
 
-1. Why we need Langchain:
-Before Langchain, llms just generate text, they don’t have access to our data, but we need to use llms according to our data, logic, our memory, needs etc but we don’t have such a platform or framework that let us use llms according to our needs. So here Langchain came into the picture.
-Langchain is a framework that basically connect llms with our data, provide built-in tools, features to use llms according to our needs.
+1. Why we need LangChain:
+Before LangChain, LLMs just generated text; they didn't have access to our specific data. However, we need to use LLMs based on our own data, logic, memory, and specific needs, but there wasn't a framework that allowed us to customize LLMs in this way. This is where LangChain comes in.
+LangChain is a framework that connects LLMs with our data and provides built-in tools, libraries, packages, and features to use LLMs according to our needs.
 
-2. -------------------------Components of Langchain-----------------------------------
+2. ------------------------- Components of LangChain -----------------------------------
 Models
 Prompts
 Chains
@@ -12,83 +12,67 @@ Indexes
 Memory
 Agents
 
-
 Models:
-Models are the interfaces that standardize the way to interact(communicate) with AI Models.
+Models are the interfaces that standardize the way of interacting (communicating) with AI models.
 
 Prompts:
-Prompts component is used for dynamic, resusable prompts using prompt templates.
+The Prompts component is used for creating dynamic, reusable prompts using prompt templates.
 
 Chains:
-Chains are used to make piplines. Output of one llm is automatically the input of other llm.
+Chains are used to create pipelines. The output of one LLM automatically becomes the input of another LLM.
 
-indexes:
-They are used to connect the llms with extrenal knowledge
+Indexes:
+Indexes are used to connect LLMs with external knowledge.
 
 It includes:
-->doc. loaders: load the docs from where they stored like in S3
-->text spliter: Divide text in chunks to generate embeddings
-->vecter store: Store the generated embeddings
-->retrivers: Make the embeddings of user query and Make a symantic search from vectore Store. Take the result and user quey to llm to generate the final result
+-> Document Loaders: Load documents from where they are stored (e.g., S3).
+-> Text Splitters: Divide text into chunks to generate embeddings.
+-> Vector Store: Store the generated embeddings.
+-> Retrievers: Create embeddings of the user query and perform a semantic search in the Vector Store. The result and user query are then passed to the LLM to generate the final result.
 
 Memory:
-Used to store the chat history, remember the past chats.
+Used to store chat history and remember past interactions.
 Types:
-->Conversationbuffermemnory: Store all past chat and pass that chat+query in llms to answer
-->ConversationBufferWindowMemnory: Store last n number of chats and then pass that chat+query in llm to answer.
-->SummarizerBasedMemory: Summarize the all past chat and then pass that summary+query in llm
+-> ConversationBufferMemory: Stores all past chats and passes the history + query to the LLM to generate an answer.
+-> ConversationBufferWindowMemory: Stores the last 'n' number of chats and then passes that history + query to the LLM to generate an answer.
+-> ConversationSummaryMemory: Summarizes all past chats and then passes that summary + query to the LLM.
 
-Agents: Agents have llms+Tools+cuestomLogic+Memory
+Agents: Agents combine LLMs + Tools + Custom Logic + Memory.
 
-3.--------------------------------Explanation of Langchain Components-------------------------
+3. ----------------------- Explanation of LangChain Components -------------------------
 
 Models:
-There are 2 types of models:
-->Language Models: Take text, generate text
-->Embedding modedsl: Take text, generate vectors
+There are two types of models:
+-> Language Models: Take text, generate text.
+-> Embedding Models: Take text, generate vectors.
 
-In Language models, there are llms and Chat models. llms api request are stateless. Chat models are fine tuned for conversations.
-There are Closed source models like Claude, Gpt. and Opened source Models like on huggingface.
-We can interact with all these models via apis. For Huggingface, we have to use the access token.
+In Language models, there are LLMs and Chat models. LLM API requests are stateless. Chat models are fine-tuned for conversations.
+There are closed-source models like Claude and GPT, and open-source models available on Hugging Face.
+We can interact with all these models via APIs. For Hugging Face, an access token is required.
 
 Prompts:
-This component is used to create the dynamic and resusable Prompts. There are three types of Prompts:
+This component is used to create dynamic and reusable prompts. There are three types of messages:
 -> System Messages (AI instructions)
 -> Human Messages (Human input)
--> AI Messages (AI Output)
-
+-> AI Messages (AI output)
 
 Chains:
-The piplines where Output of one runnable becomes the output of other runnable automatically.
-chain = prompt | model | Parser
+Pipelines where the output of one runnable becomes the input of another runnable automatically.
+Example: chain = prompt | model | Parser
 
+----------------------- Structured Output ---------------------------------------------------
 
+For data storage in a database, we need structured data from chat models.
+For chat models that natively support structured output, we can use the method: `with_structured_output` with:
+-> TypedDict: Use the "typing" library and import the TypedDict class. Define a schema (class) which inherits from TypedDict.
+-> Pydantic: From Pydantic, import BaseModel. Define a schema (class) which inherits from BaseModel. Use "Field" to provide descriptions for the required fields.
 
+For chat models that are unable to generate structured output by default, we can use:
+-> Output Parsers
 
+----------------------- Retrievers -------------------------------------------------------------
 
-
-
-
-
-
-
-
-
-
------------------------Structured Output---------------------------------------------------
-
-For data storage in db, we need Structured data from chat models, so we use this approach.
-For chat models, who, by default, generate Structured Output, we can use method called: with_Structured_output with:
--> TypeDict: Use it from "typing" lib, and import TypeDict class. Define schema(class) which inherit typeDict class. Use function called "with_Structured_output"
--> Pydantic: From Pydantic, import BaseModel. Define a schema(class) which is inheriting BaseModel class. Also use "Field" for little description of fields you required
-
-For chat models, who, by default, unable to generate Structured Output, we can use method called:
--> Output Parser
-
------------------------Retrivers-------------------------------------------------------------
-
-Multi query retrivers:
-
-When user query is ambigous. Multi query retrivers are used there.
-They generate multiple queries from base(user) query, which are not ambigous.
-Then retrives the relevant docs against all thoes generated queries and then combined them to generate final answer.
+Multi Query Retrievers:
+These are used when a user query is ambiguous.
+They generate multiple versions of the base (user) query that are not ambiguous.
+Then, they retrieve relevant documents for all those generated queries, combine them, and use them to generate the final answer.
