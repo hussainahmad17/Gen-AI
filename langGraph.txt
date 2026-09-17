@@ -1,45 +1,39 @@
-Agenti AI using LangGraph
+Agentic AI using LangGraph
 
-LangGraph is used to build stateful(nodes/data) llm workflows.
-In LangGraph, we can define the control flow of the Agents
+LangGraph is used to build stateful (nodes/data) LLM workflows.
+In LangGraph, we can define the control flow of the agents.
 
-------------------------------------Core Concepts------------------------------------------------
-
+------------------------------------ Core Concepts ------------------------------------------------
 
 1. Prompt Chaining:
-We have series of steps and output from one llm becomes the input for other.
+A series of steps where the output from one LLM becomes the input for another.
 
-2. Parallelizm:
-Situation where we can execute the multiple llms workflows
+2. Parallelism:
+A situation where multiple LLM workflows can be executed simultaneously.
 
-3. Routing: 
-The Situation where main llm(orchestration) has to decide to which llm, flow should go.
+3. Routing:
+A situation where a main LLM (the orchestrator) decides which LLM or flow the process should follow.
 
-4. Graphs, Nodes, and Edges
-Complete workflow is represented as a Graphs in LangGraph, where nodes are the python function performing specific tasks, and edges decide the flow of the execution like sequential, linear, Parallel.
+4. Graphs, Nodes, and Edges:
+The complete workflow is represented as a Graph in LangGraph. Nodes are Python functions performing specific tasks, and edges determine the flow of execution (e.g., sequential, linear, or parallel).
 
-------------------------------Advanced Concepts--------------------------------------------------
+------------------------------ Advanced Concepts --------------------------------------------------
 
 Checkpoints and MemorySaver:
+These are used to restore the agent's state, allowing agents to remember past conversations.
+We define a `thread_id` to let the agent identify specific chat conversations, such as which conversation belongs to which user.
 
-They are used to restroe the agent state that let Agents to memorize the past conversations.
-We define the thread id to let agent identify the chat conversations, like which conversation is belong to which user.
-
-Persistent:
-
-It refers to the ability to save and restore the state of workflow over the time.
-For this, we can use the InMemorySaver class, by its object in compile time, we can implement the Persistent.
+Persistence:
+Persistence refers to the ability to save and restore the state of a workflow over time.
+This can be implemented using the `InMemorySaver` class by passing the checkpointer object during the `compile()` stage.
 
 Fault Tolerance:
+If the workflow crashes, it can resume exactly from the point where it failed.
+We can resume our workflow from the last known state by using the same `thread_id` and passing `None` as the input state, which will then be populated from the last state stored in memory. This provides fault tolerance, allowing us to recover from failures or interruptions.
 
-If the workflow crashes, it resume exactly from the point from where it crashed.
-we can resume our workflow from the last state by using the same thread_id, and by passing none as the input state, which will be filled in from the last state in memory. This is called Fault Tolerance, and allows us to resume our workflow from the last state in case of a failure or interruption.
-
-Human in the loop:
-
-Situation where workflow is interrupted and it waits for Human input 
+Human-in-the-loop:
+A situation where the workflow is interrupted and waits for human input before proceeding.
 
 Time Travel:
-
-Going back to an earlier saved state of your agent and continuing from there.
-We can go back to the earlier state by passing Checkpoint ID
+The ability to go back to an earlier saved state of your agent and continue from there.
+We can return to an earlier state by passing the specific `checkpoint_id`.
