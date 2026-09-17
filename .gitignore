@@ -67,8 +67,6 @@ web_modules/
 .yarn-integrity
 
 # dotenv environment variable files
-.env
-.env.*
 !.env.example
 
 # parcel-bundler cache (https://parceljs.org/)
@@ -163,4 +161,4 @@ __pycache__/
 .venv/
 
 # Environment variables
-.env
+config.bat
