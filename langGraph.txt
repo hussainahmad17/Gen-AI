@@ -37,3 +37,20 @@ A situation where the workflow is interrupted and waits for human input before p
 Time Travel:
 The ability to go back to an earlier saved state of your agent and continue from there.
 We can return to an earlier state by passing the specific `checkpoint_id`.
+
+
+---------------------------MCP Servers-------------------------------------------
+
+This terminology consists of two things:
+1. MCP Client
+2. MCP Servers
+
+MCP Client is the user side code, write to connect with MCP servers.
+MCP Servers are basically the different tools deployed on a server.
+
+Problem MCP Servers Solves:
+
+Suppose we have a tool to get the latest PRs from a repo.
+tool is working fine, but what if in future, github made some changes at api to connect with it, get PRs, or some info
+If so, we need to make changes at code level to changes the apis endpoints which is very hard
+so this Problem is solved by MCP server
